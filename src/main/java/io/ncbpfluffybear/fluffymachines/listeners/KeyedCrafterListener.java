@@ -5,13 +5,14 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.ncbpfluffybear.fluffymachines.machines.AutoCraftingTable;
 import io.ncbpfluffybear.fluffymachines.machines.SmartFactory;
 import io.ncbpfluffybear.fluffymachines.utils.Utils;
 import java.util.Optional;
 import javax.annotation.Nullable;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -55,8 +56,7 @@ public class KeyedCrafterListener implements Listener {
                     Utils.send(p, "&cYou can not use vanilla items with this machine!");
                     return;
                 }
-
-                if (SmartFactory.getAcceptedItems().contains((SlimefunItemStack) key.getItem())) {
+                if (SmartFactory.getAcceptedItems().contains(key.getItem())) {
 
                     BlockStorage.addBlockInfo(b, "recipe", key.getId());
                     BlockStorage.getInventory(b).replaceExistingItem(SmartFactory.RECIPE_SLOT,
@@ -91,7 +91,7 @@ public class KeyedCrafterListener implements Listener {
     }
 
     private boolean isCargoNode(@Nullable SlimefunItem recipe) {
-        return recipe != null && (recipe.getItem() == SlimefunItems.CARGO_INPUT_NODE
-                || recipe.getItem() == SlimefunItems.CARGO_OUTPUT_NODE || recipe.getItem() == SlimefunItems.CARGO_OUTPUT_NODE_2);
+        return recipe != null && (recipe.getItem() == SlimefunItems.CARGO_INPUT_NODE.item()
+                || recipe.getItem() == SlimefunItems.CARGO_OUTPUT_NODE.item() || recipe.getItem() == SlimefunItems.CARGO_OUTPUT_NODE_2.item());
     }
 }

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.ncbpfluffybear</groupId>
     <artifactId>FluffyMachines</artifactId>
-    <version>1.0.0</version>
+    <version>AQUAVILLE</version>
 
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -36,7 +36,7 @@
     </repositories>
 
     <build>
-        <finalName>${project.name} v${project.version}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <defaultGoal>clean package</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 
@@ -62,17 +62,6 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.5.1</version>
                 <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <shadedPattern>io.ncbpfluffybear.shaded.bstats</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>com.github.Slimefun-Addon-Community.extrautils</pattern>
-                            <shadedPattern>io.ncbpfluffybear.shaded.extrautils</shadedPattern>
-                        </relocation>
-                    </relocations>
-
                     <!-- Exclude manifest files -->
                     <filters>
                         <filter>
@@ -82,7 +71,6 @@
                             </excludes>
                         </filter>
                     </filters>
-
                 </configuration>
                 <executions>
                     <execution>
@@ -97,24 +85,28 @@
     </build>
 
     <dependencies>
+        <!-- SPIGOT API DEPENDENCY -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.16.3-R0.1-SNAPSHOT</version>
+            <version>1.21.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
+        <!-- MODIFIED SLIMEFUN API DEPENDENCY -->
         <dependency>
-            <groupId>io.github.TheBusyBiscuit</groupId>
+            <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>RC-37</version>
-            <scope>provided</scope>
+            <version>0a7fea8</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Slimefun v4.9-UNOFFICIAL.jar</systemPath>
         </dependency>
 
+        <!-- MCMMO API DEPENDENCY -->
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
             <artifactId>mcMMO</artifactId>
-            <version>2.1.149</version>
+            <version>2.2.031</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -132,30 +124,12 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-            <version>3.0.2</version>
-            <scope>provided</scope>
-        </dependency>
+        <!-- LOMBOK TOOL -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.20</version>
+            <version>1.18.36</version>
             <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>2.2.1</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.Slimefun-Addon-Community</groupId>
-            <artifactId>extrautils</artifactId>
-            <version>73e76ac06c</version>
         </dependency>
     </dependencies>
 </project>

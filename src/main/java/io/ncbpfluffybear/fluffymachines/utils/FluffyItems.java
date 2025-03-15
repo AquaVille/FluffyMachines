@@ -1,6 +1,5 @@
 package io.ncbpfluffybear.fluffymachines.utils;
 
-import dev.j3fftw.extrautils.utils.LoreBuilderDynamic;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineTier;
 import io.github.thebusybiscuit.slimefun4.core.attributes.MachineType;
@@ -157,8 +156,8 @@ public class FluffyItems {
             "",
             "&7Automatically crafts &fvanilla &7recipes",
             "",
-            LoreBuilderDynamic.powerBuffer(AutoCraftingTable.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(AutoCraftingTable.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(AutoCraftingTable.CAPACITY),
+            LoreBuilder.powerPerSecond(AutoCraftingTable.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack AUTO_ANCIENT_ALTAR = new SlimefunItemStack("AUTO_ANCIENT_ALTAR",
             Material.ENCHANTING_TABLE,
@@ -166,8 +165,8 @@ public class FluffyItems {
             "",
             "&7Automatically crafts &5Ancient Altar &7recipes",
             "",
-            LoreBuilderDynamic.powerBuffer(AutoAncientAltar.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(AutoAncientAltar.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(AutoAncientAltar.CAPACITY),
+            LoreBuilder.powerPerSecond(AutoAncientAltar.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack AUTO_TABLE_SAW = new SlimefunItemStack("AUTO_TABLE_SAW",
             Material.STONECUTTER,
@@ -175,8 +174,8 @@ public class FluffyItems {
             "",
             "&7Automatically crafts &6Table Saw &7recipes",
             "",
-            LoreBuilderDynamic.powerBuffer(AutoTableSaw.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(AutoTableSaw.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(AutoTableSaw.CAPACITY),
+            LoreBuilder.powerPerSecond(AutoTableSaw.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack WATER_SPRINKER = new SlimefunItemStack("WATER_SPRINKLER",
             "d6b13d69d1929dcf8edf99f3901415217c6a567d3a6ead12f75a4de3ed835e85",
@@ -184,8 +183,8 @@ public class FluffyItems {
             "",
             "&7Sprinkly sprinkly",
             "",
-            LoreBuilderDynamic.powerBuffer(WaterSprinkler.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(WaterSprinkler.ENERGY_CONSUMPTION) + " per crop"
+            LoreBuilder.powerBuffer(WaterSprinkler.CAPACITY),
+            LoreBuilder.powerPerSecond(WaterSprinkler.ENERGY_CONSUMPTION) + " per crop"
     );
     public static final SlimefunItemStack GENERATOR_CORE = new SlimefunItemStack("GENERATOR_CORE",
             Material.BLAST_FURNACE,
@@ -199,8 +198,8 @@ public class FluffyItems {
             "",
             "&eRight click &7the lever to generate power",
             "",
-            LoreBuilderDynamic.power(CrankGenerator.RATE, "/Crank"),
-            LoreBuilderDynamic.powerBuffer(CrankGenerator.CAPACITY),
+            LoreBuilder.power(CrankGenerator.RATE, "/Crank"),
+            LoreBuilder.powerBuffer(CrankGenerator.CAPACITY),
             "",
             Utils.multiBlockWarning()
     );
@@ -221,8 +220,8 @@ public class FluffyItems {
             "",
             "&7Empties the contents of backpacks",
             "",
-            LoreBuilderDynamic.powerBuffer(BackpackUnloader.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(BackpackUnloader.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(BackpackUnloader.CAPACITY),
+            LoreBuilder.powerPerSecond(BackpackUnloader.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack BACKPACK_LOADER = new SlimefunItemStack("BACKPACK_LOADER",
             Material.ORANGE_STAINED_GLASS,
@@ -230,8 +229,8 @@ public class FluffyItems {
             "",
             "&7Moves items from inventory to backpack",
             "",
-            LoreBuilderDynamic.powerBuffer(BackpackLoader.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(BackpackLoader.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(BackpackLoader.CAPACITY),
+            LoreBuilder.powerPerSecond(BackpackLoader.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack UPGRADED_EXPLOSIVE_PICKAXE = new SlimefunItemStack(
             "UPGRADED_EXPLOSIVE_PICKAXE",
@@ -248,7 +247,7 @@ public class FluffyItems {
     );
     public static final SlimefunItemStack FIREPROOF_RUNE = new SlimefunItemStack(
             "FIREPROOF_RUNE",
-            new ColoredFireworkStar(Color.fromRGB(255, 165, 0),
+            ColoredFireworkStar.create(Color.fromRGB(255, 165, 0),
                     "&7Ancient Rune &8&l[&c&lFireproof&8&l]",
                     "",
                     "&eDrop this rune onto a dropped item to",
@@ -268,8 +267,8 @@ public class FluffyItems {
             "",
             "&7Automatically crafts &eEnhanced Crafting Table &7recipes",
             "",
-            LoreBuilderDynamic.powerBuffer(AutoCrafter.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(AutoCrafter.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(AutoCrafter.CAPACITY),
+            LoreBuilder.powerPerSecond(AutoCrafter.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack AUTO_MAGIC_WORKBENCH = new SlimefunItemStack("AUTO_MAGIC_WORKBENCH",
             Material.BOOKSHELF,
@@ -277,8 +276,8 @@ public class FluffyItems {
             "",
             "&7Automatically crafts &6Magic Workbench &7recipes",
             "",
-            LoreBuilderDynamic.powerBuffer(AutoCrafter.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(AutoCrafter.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(AutoCrafter.CAPACITY),
+            LoreBuilder.powerPerSecond(AutoCrafter.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack AUTO_ARMOR_FORGE = new SlimefunItemStack("AUTO_ARMOR_FORGE",
             Material.SMITHING_TABLE,
@@ -286,8 +285,8 @@ public class FluffyItems {
             "",
             "&7Automatically crafts Armor Forge recipes",
             "",
-            LoreBuilderDynamic.powerBuffer(AutoCrafter.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(AutoCrafter.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(AutoCrafter.CAPACITY),
+            LoreBuilder.powerPerSecond(AutoCrafter.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack ADVANCED_AUTO_DISENCHANTER = new SlimefunItemStack(
             "ADVANCED_AUTO_DISENCHANTER",
@@ -297,8 +296,8 @@ public class FluffyItems {
             "&7Removes one enchant from an item",
             "&7Requires an &6Ancient Book &7to operate",
             "",
-            LoreBuilderDynamic.powerBuffer(AdvancedAutoDisenchanter.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(AdvancedAutoDisenchanter.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(AdvancedAutoDisenchanter.CAPACITY),
+            LoreBuilder.powerPerSecond(AdvancedAutoDisenchanter.ENERGY_CONSUMPTION)
     );
     public static final SlimefunItemStack SCYTHE = new SlimefunItemStack("SCYTHE",
             Material.IRON_HOE,
@@ -349,8 +348,8 @@ public class FluffyItems {
             "&7An all-in-one machine that grinds, pans, and washes",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             LoreBuilder.speed(10),
-            LoreBuilderDynamic.powerBuffer(ElectricDustFabricator.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(ElectricDustFabricator.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(ElectricDustFabricator.CAPACITY),
+            LoreBuilder.powerPerSecond(ElectricDustFabricator.ENERGY_CONSUMPTION)
     );
 
     public static final SlimefunItemStack ELECTRIC_DUST_RECYCLER = new SlimefunItemStack("ELECTRIC_DUST_RECYCLER",
@@ -360,8 +359,8 @@ public class FluffyItems {
             "&7Recycles dust back into sifted ore",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             LoreBuilder.speed(1),
-            LoreBuilderDynamic.powerBuffer(ElectricDustRecycler.CAPACITY),
-            LoreBuilderDynamic.powerPerTick(ElectricDustRecycler.ENERGY_CONSUMPTION)
+            LoreBuilder.powerBuffer(ElectricDustRecycler.CAPACITY),
+            LoreBuilder.powerPerSecond(ElectricDustRecycler.ENERGY_CONSUMPTION)
     );
 
     public static final SlimefunItemStack ALTERNATE_ELEVATOR_PLATE = new SlimefunItemStack("ALTERNATE_ELEVATOR_PLATE",
@@ -464,17 +463,17 @@ public class FluffyItems {
             "",
             LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE),
             LoreBuilder.speed(1),
-            LoreBuilderDynamic.powerBuffer(SmartFactory.getEnergyCapacity()),
-            LoreBuilderDynamic.powerPerTick(SmartFactory.getEnergyConsumption())
+            LoreBuilder.powerBuffer(SmartFactory.getEnergyCapacity()),
+            LoreBuilder.powerPerSecond(SmartFactory.getEnergyConsumption())
     );
 
     static {
-        FireproofRune.setFireproof(FIREPROOF_RUNE);
-        addGlow(SMALL_PORTABLE_CHARGER);
-        addGlow(MEDIUM_PORTABLE_CHARGER);
-        addGlow(BIG_PORTABLE_CHARGER);
-        addGlow(LARGE_PORTABLE_CHARGER);
-        addGlow(CARBONADO_PORTABLE_CHARGER);
+        FireproofRune.setFireproof(FIREPROOF_RUNE.item());
+        addGlow(SMALL_PORTABLE_CHARGER.item());
+        addGlow(MEDIUM_PORTABLE_CHARGER.item());
+        addGlow(BIG_PORTABLE_CHARGER.item());
+        addGlow(LARGE_PORTABLE_CHARGER.item());
+        addGlow(CARBONADO_PORTABLE_CHARGER.item());
     }
 
     private static void addGlow(ItemStack item) {

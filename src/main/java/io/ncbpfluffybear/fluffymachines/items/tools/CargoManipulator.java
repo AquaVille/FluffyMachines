@@ -113,7 +113,7 @@ public class CargoManipulator extends SimpleSlimefunItem<ItemUseHandler> impleme
             for (int i = 0; i < 9; i++) { // Iterate through all slots in cargo filter
                 ItemStack menuItem = parentInventory.getItemInSlot(CARGO_SLOTS[i]);
                 if (menuItem != null) {
-                    filterItems[i] = new CustomItemStack(menuItem, 1);
+                    filterItems[i] = new SlimefunItemStack("FILTER_ITEM",menuItem).item();
                 } else {
                     filterItems[i] = null;
                 }
@@ -142,7 +142,7 @@ public class CargoManipulator extends SimpleSlimefunItem<ItemUseHandler> impleme
         // Get saved data
         JsonObject jsonData = nodeSettings.getFirstValue();
 
-        SlimefunItemStack savedNodeType = (SlimefunItemStack) SlimefunItem.getById(jsonData.get("id").getAsString()).getItem();
+        SlimefunItemStack savedNodeType = Utils.toSlimeFunStack(SlimefunItem.getById(jsonData.get("id").getAsString()).getItem());
         if (savedNodeType != nodeType) {
             Utils.send(p, "&cYou copied a " + savedNodeType.getDisplayName() +
                     " &cbut you are trying to modify a " + nodeType.getDisplayName() + "&c!");
@@ -187,7 +187,7 @@ public class CargoManipulator extends SimpleSlimefunItem<ItemUseHandler> impleme
                         playerItem.setAmount(playerItem.getAmount() - 1);
 
                         // Insert item into node menu
-                        nodeMenu.replaceExistingItem(CARGO_SLOTS[i], new CustomItemStack(playerItem, 1));
+                        nodeMenu.replaceExistingItem(CARGO_SLOTS[i], new SlimefunItemStack("CARGO_SLOT",playerItem).item());
                         break;
                     }
                 }
@@ -264,11 +264,11 @@ public class CargoManipulator extends SimpleSlimefunItem<ItemUseHandler> impleme
             return null;
         }
 
-        return (SlimefunItemStack) SlimefunItem.getById(blockId).getItem();
+        return Utils.toSlimeFunStack(SlimefunItem.getById(blockId).getItem());
     }
 
     private void createParticle(Block b, Color color) {
         Particle.DustOptions dustOption = new Particle.DustOptions(color, 1);
-        b.getLocation().getWorld().spawnParticle(Particle.REDSTONE, b.getLocation().add(0.5, 0.5, 0.5), 1, dustOption);
+        b.getLocation().getWorld().spawnParticle(Particle.DUST, b.getLocation().add(0.5, 0.5, 0.5), 1, dustOption);
     }
 }

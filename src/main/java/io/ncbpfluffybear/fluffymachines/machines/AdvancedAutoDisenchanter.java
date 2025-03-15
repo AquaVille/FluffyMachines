@@ -29,7 +29,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -62,10 +62,10 @@ public class AdvancedAutoDisenchanter extends SlimefunItem implements EnergyNetC
     private final IntRangeSetting levelLimit = new IntRangeSetting(this, "enchant-level-limit", 0, 10, Short.MAX_VALUE);
     private static final Map<BlockPosition, Integer> progress = new HashMap<>();
 
-    private static final ItemStack DEFAULT_SELECTION_ITEM = new CustomItemStack(Material.ENCHANTED_BOOK,
-            "&5Enchant Selector", "", "&e> Click to rescan input slot <");
+    private static final ItemStack DEFAULT_SELECTION_ITEM = new SlimefunItemStack("DEFAULT_SELECTION_ITEM", Material.ENCHANTED_BOOK,
+            "&5Enchant Selector", "", "&e> Click to rescan input slot <").item();
 
-    private static final ItemStack PROGRESS_ITEM = new CustomItemStack(Material.EXPERIENCE_BOTTLE, "&aProgress");
+    private static final ItemStack PROGRESS_ITEM = new SlimefunItemStack("PROGRESS_ITEM", Material.EXPERIENCE_BOTTLE, "&aProgress").item();
 
     public AdvancedAutoDisenchanter(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -290,7 +290,7 @@ public class AdvancedAutoDisenchanter extends SlimefunItem implements EnergyNetC
         }
 
         for (int i : BOOK_BORDER) {
-            preset.addItem(i, new CustomItemStack(new ItemStack(Material.YELLOW_STAINED_GLASS_PANE), " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, new SlimefunItemStack("BOOK_BORDER" ,new ItemStack(Material.YELLOW_STAINED_GLASS_PANE), " ").item(), ChestMenuUtils.getEmptyClickHandler());
         }
 
         for (int i : OUTPUT_BORDER) {
