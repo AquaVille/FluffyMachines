@@ -548,14 +548,14 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
         // Extract single
         if (action.isRightClicked()) {
             if (stored > 0) { // Extract from stored
-                Utils.giveOrDropItem(p, new SlimefunItemStack("STORED_ITEM",storedItem).item());
+                Utils.giveOrDropItem(p, storedItem);
                 setStored(b, --stored);
                 updateMenu(b, menu, false, capacity);
                 return;
             } else {
                 for (int slot : OUTPUT_SLOTS) { // Extract from slot
                     if (menu.getItemInSlot(slot) != null) {
-                        Utils.giveOrDropItem(p, new SlimefunItemStack("STORED_ITEM",menu.getItemInSlot(slot)).item());
+                        Utils.giveOrDropItem(p, menu.getItemInSlot(slot));
                         menu.consumeItem(slot);
                         return;
                     }
@@ -579,10 +579,12 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
 
             if (contents[i] == null) {
                 if (stored >= maxStackSize) {
-                    inv.setItem(i, new SlimefunItemStack("STORED_ITEM",storedItem).asQuantity(maxStackSize));
+                    storedItem.setAmount(maxStackSize);
+                    inv.setItem(i, storedItem);
                     stored -= maxStackSize;
                 } else if (stored > 0) {
-                    inv.setItem(i, new SlimefunItemStack("STORED_ITEM",storedItem).asQuantity(stored));
+                    storedItem.setAmount(stored);
+                    inv.setItem(i, storedItem);
                     stored = 0;
                 } else {
                     if (outI > 1) {
