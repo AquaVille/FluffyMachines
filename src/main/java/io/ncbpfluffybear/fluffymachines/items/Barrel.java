@@ -1,15 +1,25 @@
 package io.ncbpfluffybear.fluffymachines.items;
 
-import io.github.thebusybiscuit.slimefun4.api.items.*;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemHandler;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.settings.IntRangeSetting;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.ncbpfluffybear.fluffymachines.objects.DoubleHologramOwner;
 import io.ncbpfluffybear.fluffymachines.objects.NonHopperableBlock;
 import io.ncbpfluffybear.fluffymachines.utils.Utils;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.List;
+import java.util.Locale;
+import javax.annotation.Nonnull;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
@@ -29,12 +39,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.util.Vector;
-
-import javax.annotation.Nonnull;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * A Remake of Barrels by John000708
@@ -60,13 +64,13 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
     public static final DecimalFormat STORAGE_INDICATOR_FORMAT = new DecimalFormat("###,###.####",
             DecimalFormatSymbols.getInstance(Locale.ROOT));
 
-    private final ItemStack HOLOGRAM_OFF_ITEM = new SlimefunItemStack("HOLOGRAM_OFF_ITEM",Material.QUARTZ_SLAB, "&3Toggle Hologram &c(Off)").item();
-    private final ItemStack HOLOGRAM_ON_ITEM = new SlimefunItemStack("HOLOGRAM_ON_ITEM",Material.QUARTZ_SLAB, "&3Toggle Hologram &a(On)").item();
-    private final ItemStack TRASH_ON_ITEM = new SlimefunItemStack("TRASH_ON_ITEM",SlimefunItems.TRASH_CAN.item(), "&3Toggle Overfill Trash &a(On)",
-            "&7Turn on to delete unstorable items").item();
-    private final ItemStack TRASH_OFF_ITEM = new SlimefunItemStack("TRASH_OFF_ITEM",SlimefunItems.TRASH_CAN.item(), "&3Toggle Overfill Trash &c(Off)",
+    private final ItemStack HOLOGRAM_OFF_ITEM = CustomItemStack.create(Material.QUARTZ_SLAB, "&3Toggle Hologram &c(Off)");
+    private final ItemStack HOLOGRAM_ON_ITEM = CustomItemStack.create(Material.QUARTZ_SLAB, "&3Toggle Hologram &a(On)");
+    private final ItemStack TRASH_ON_ITEM = CustomItemStack.create(SlimefunItems.TRASH_CAN.item(), "&3Toggle Overfill Trash &a(On)",
+            "&7Turn on to delete unstorable items");
+    private final ItemStack TRASH_OFF_ITEM = CustomItemStack.create(SlimefunItems.TRASH_CAN.item(), "&3Toggle Overfill Trash &c(Off)",
             "&7Turn on to delete unstorable items"
-    ).item();
+    );
 
     private final ItemSetting<Boolean> showHologram = new ItemSetting<>(this, "show-hologram", true);
     private final ItemSetting<Boolean> breakOnlyWhenEmpty = new ItemSetting<>(this, "break-only-when-empty", false);
@@ -177,15 +181,13 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
                             int toRemove = OVERFLOW_AMOUNT;
                             while (toRemove >= stackSize) {
 
-                                unKeyed.setAmount(stackSize);
-                                b.getWorld().dropItemNaturally(b.getLocation(), unKeyed);
+                                b.getWorld().dropItemNaturally(b.getLocation(), CustomItemStack.create(unKeyed, stackSize));
 
                                 toRemove = toRemove - stackSize;
                             }
 
                             if (toRemove > 0) {
-                                unKeyed.setAmount(toRemove);
-                                b.getWorld().dropItemNaturally(b.getLocation(), unKeyed);
+                                b.getWorld().dropItemNaturally(b.getLocation(), CustomItemStack.create(unKeyed, toRemove));
                             }
 
                             setStored(b, stored - OVERFLOW_AMOUNT);
@@ -196,16 +198,15 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
 
                             // Everything greater than 1 stack
                             while (stored >= stackSize) {
-                                unKeyed.setAmount(stackSize);
-                                b.getWorld().dropItemNaturally(b.getLocation(), unKeyed);
+
+                                b.getWorld().dropItemNaturally(b.getLocation(), CustomItemStack.create(unKeyed, stackSize));
 
                                 stored = stored - stackSize;
                             }
 
                             // Drop remaining, if there is any
                             if (stored > 0) {
-                                unKeyed.setAmount(stored);
-                                b.getWorld().dropItemNaturally(b.getLocation(), unKeyed);
+                                b.getWorld().dropItemNaturally(b.getLocation(), CustomItemStack.create(unKeyed, stored));
                             }
 
                             // In case they use an explosive pick
@@ -234,9 +235,9 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
         // Initialize an empty barrel
         if (BlockStorage.getLocationInfo(b.getLocation(), "stored") == null) {
 
-            menu.replaceExistingItem(STATUS_SLOT, new SlimefunItemStack("ITEMS_STORED",
-                    Material.LIME_STAINED_GLASS_PANE, "&6Items Stored: &e0" + " / " + capacity, "&70%").item());
-            menu.replaceExistingItem(DISPLAY_SLOT, new SlimefunItemStack("EMPTY",Material.BARRIER, "&cEmpty").item());
+            menu.replaceExistingItem(STATUS_SLOT, CustomItemStack.create(
+                    Material.LIME_STAINED_GLASS_PANE, "&6Items Stored: &e0" + " / " + capacity, "&70%"));
+            menu.replaceExistingItem(DISPLAY_SLOT, CustomItemStack.create(Material.BARRIER, "&cEmpty"));
 
             setStored(b, 0);
 
@@ -280,8 +281,8 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
         // Insert all
         int INSERT_ALL_SLOT = 43;
         menu.replaceExistingItem(INSERT_ALL_SLOT,
-                new SlimefunItemStack("INSERT_ALL_SLOT",Material.LIME_STAINED_GLASS_PANE, "&bInsert All",
-                        "&7> Click here to insert all", "&7compatible items into the barrel").item());
+                CustomItemStack.create(Material.LIME_STAINED_GLASS_PANE, "&bInsert All",
+                        "&7> Click here to insert all", "&7compatible items into the barrel"));
         menu.addMenuClickHandler(INSERT_ALL_SLOT, (pl, slot, item, action) -> {
             insertAll(pl, menu, b);
             return false;
@@ -290,10 +291,10 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
         // Extract all
         int EXTRACT_SLOT = 44;
         menu.replaceExistingItem(EXTRACT_SLOT,
-                new SlimefunItemStack("EXTRACT_SLOT",Material.RED_STAINED_GLASS_PANE, "&6Extract All",
+                CustomItemStack.create(Material.RED_STAINED_GLASS_PANE, "&6Extract All",
                         "&7> Left click to extract", "&7all items to your inventory",
                         "&7> Right click to extract 1 item"
-                ).item());
+                ));
         menu.addMenuClickHandler(EXTRACT_SLOT, (pl, slot, item, action) -> {
             extract(pl, menu, b, action);
             return false;
@@ -362,6 +363,7 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
                 if (useTrash != null && useTrash.equals("true")) {
                     inv.replaceExistingItem(slot, null);
                 }
+
             }
         }
     }
@@ -375,9 +377,8 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
             // Output stack
             if (stored > displayItem.getMaxStackSize()) {
 
-                //ItemStack clone = new SlimefunItemStack("OUTPUT_SLOT_ITEM",Utils.unKeyItem(displayItem)).asQuantity(displayItem.getMaxStackSize());
-                ItemStack clone = Utils.unKeyItem(displayItem);
-                clone.setAmount(displayItem.getMaxStackSize());
+                ItemStack clone = CustomItemStack.create(Utils.unKeyItem(displayItem), displayItem.getMaxStackSize());
+
 
                 if (inv.fits(clone, OUTPUT_SLOTS)) {
                     int amount = clone.getMaxStackSize();
@@ -389,9 +390,7 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
 
             } else if (stored != 0) {   // Output remaining
 
-                //ItemStack clone = new SlimefunItemStack("OUTPUT_SLOT_ITEM",Utils.unKeyItem(displayItem)).asQuantity(stored);
-                ItemStack clone = Utils.unKeyItem(displayItem);
-                clone.setAmount(stored);
+                ItemStack clone = CustomItemStack.create(Utils.unKeyItem(displayItem), stored);
 
                 if (inv.fits(clone, OUTPUT_SLOTS)) {
                     setStored(b, 0);
@@ -405,7 +404,7 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
     private void registerItem(Block b, BlockMenu inv, int slot, ItemStack item, int capacity, int stored) {
         int amount = item.getAmount();
 
-        inv.replaceExistingItem(DISPLAY_SLOT, Utils.keyItem(item));
+        inv.replaceExistingItem(DISPLAY_SLOT, CustomItemStack.create(Utils.keyItem(item), 1));
 
         // Fit all
         if (amount <= capacity) {
@@ -436,7 +435,7 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
      */
     private boolean matchMeta(ItemStack item1, ItemStack item2) {
         // It seems the meta comparisons are heavier than type checks
-        return (item1.getType().equals(item2.getType()) && item1.getItemMeta().equals(item2.getItemMeta()));
+        return item1.getType().equals(item2.getType()) && item1.getItemMeta().equals(item2.getItemMeta());
     }
 
     /**
@@ -456,9 +455,9 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
 
         // This helps a bit with lag, but may have visual impacts
         if (inv.hasViewer() || force) {
-            inv.replaceExistingItem(STATUS_SLOT, new SlimefunItemStack("ITEMS_STORED",
+            inv.replaceExistingItem(STATUS_SLOT, CustomItemStack.create(
                     Material.LIME_STAINED_GLASS_PANE, "&6Items Stored: &e" + stored + " / " + capacity,
-                    "&b" + storedStacks + " Stacks &8| &7" + storedPercent + "&7%").item());
+                    "&b" + storedStacks + " Stacks &8| &7" + storedPercent + "&7%"));
         }
 
         if (inv.getItemInSlot(DISPLAY_SLOT) != null && inv.getItemInSlot(DISPLAY_SLOT).getItemMeta().hasDisplayName()) {
@@ -472,7 +471,7 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
         }
 
         if (stored == 0) {
-            inv.replaceExistingItem(DISPLAY_SLOT, new SlimefunItemStack("EMPTY",Material.BARRIER, "&cEmpty").item());
+            inv.replaceExistingItem(DISPLAY_SLOT, CustomItemStack.create(Material.BARRIER, "&cEmpty"));
             if (showHologram.getValue() && (hasHolo == null || hasHolo.equals("true"))) {
                 updateHologram(b, null, "&cEmpty");
             }
@@ -555,7 +554,7 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
             } else {
                 for (int slot : OUTPUT_SLOTS) { // Extract from slot
                     if (menu.getItemInSlot(slot) != null) {
-                        Utils.giveOrDropItem(p, menu.getItemInSlot(slot));
+                        Utils.giveOrDropItem(p, CustomItemStack.create(menu.getItemInSlot(slot), 1));
                         menu.consumeItem(slot);
                         return;
                     }
@@ -579,12 +578,10 @@ public class Barrel extends NonHopperableBlock implements DoubleHologramOwner {
 
             if (contents[i] == null) {
                 if (stored >= maxStackSize) {
-                    storedItem.setAmount(maxStackSize);
-                    inv.setItem(i, storedItem);
+                    inv.setItem(i, CustomItemStack.create(storedItem, maxStackSize));
                     stored -= maxStackSize;
                 } else if (stored > 0) {
-                    storedItem.setAmount(stored);
-                    inv.setItem(i, storedItem);
+                    inv.setItem(i, CustomItemStack.create(storedItem, stored));
                     stored = 0;
                 } else {
                     if (outI > 1) {

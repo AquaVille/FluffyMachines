@@ -52,7 +52,7 @@ public class ElectricDustRecycler extends AContainer implements RecipeDisplayIte
     protected void registerDefaultRecipes() {
 
         for (SlimefunItemStack dust : Constants.dusts) {
-            registerRecipe(1, new SlimefunItemStack(dust.getItemId(),dust.item()).asQuantity(8), SlimefunItems.SIFTED_ORE.item());
+            registerRecipe(1, new SlimefunItemStack(dust, 8), SlimefunItems.SIFTED_ORE);
         }
     }
 

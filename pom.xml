@@ -56,31 +56,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.9.0</version>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.1</version>
-                <configuration>
-                    <!-- Exclude manifest files -->
-                    <filters>
-                        <filter>
-                            <artifact>*:*</artifact>
-                            <excludes>
-                                <exclude>META-INF/*.MF</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
@@ -97,7 +72,7 @@
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>0a7fea8</version>
+            <version>4.9</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/Slimefun v4.9-UNOFFICIAL.jar</systemPath>
         </dependency>

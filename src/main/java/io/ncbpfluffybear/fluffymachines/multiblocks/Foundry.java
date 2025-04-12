@@ -50,10 +50,8 @@ public class Foundry extends MultiBlockMachine {
                 p.getInventory().getItemInMainHand().setType(Material.BUCKET);
                 ArmorStand lavaStand = (ArmorStand) p.getWorld().spawnEntity(b.getLocation().add(0.5, -3, 0.5),
                     EntityType.ARMOR_STAND);
-                lavaStand.getEquipment().setHelmet(new SlimefunItemStack(
-                        "HELMET_ITEM",
-                        SlimefunUtils.getCustomHead("b6965e6a58684c277d18717cec959f2833a72dfa95661019dbcdf3dbf66b048")
-                ).item());
+                lavaStand.getEquipment().setHelmet(
+                        SlimefunUtils.getCustomHead("b6965e6a58684c277d18717cec959f2833a72dfa95661019dbcdf3dbf66b048"));
                 lavaStand.setCanPickupItems(false);
                 lavaStand.setGravity(false);
                 lavaStand.setVisible(false);

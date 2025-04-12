@@ -37,10 +37,10 @@ public class MiniBarrel extends Barrel {
     @Override
     protected void buildMenu(BlockMenu menu, Block b) {
         super.buildMenu(menu, b);
-        menu.replaceExistingItem(13, new SlimefunItemStack("MAX-SIZE",Material.YELLOW_STAINED_GLASS_PANE,
+        menu.replaceExistingItem(13, CustomItemStack.create(Material.YELLOW_STAINED_GLASS_PANE,
                 "&eChange barrel size", "&7> Click to change max size", "&eCurrent size: " + getCapacity(b),
                 "&eSize limit: " + barrelCapacity.getValue()
-        ).item());
+        ));
         menu.addMenuClickHandler(13, (p, slot, item, action) -> {
             p.closeInventory();
             Utils.send(p, "&eType the new size of the barrel. Max size: " + barrelCapacity.getValue());
@@ -59,10 +59,10 @@ public class MiniBarrel extends Barrel {
                 }
 
                 BlockStorage.addBlockInfo(b, "max-size", String.valueOf(renameSize));
-                menu.replaceExistingItem(13, new SlimefunItemStack("MAX-SIZE",Material.YELLOW_STAINED_GLASS_PANE,
+                menu.replaceExistingItem(13, CustomItemStack.create(Material.YELLOW_STAINED_GLASS_PANE,
                         "&eChange barrel size", "&7> Click to change max size", "&eCurrent size: " + renameSize,
                         "&eSize limit: " + barrelCapacity.getValue()
-                ).item());
+                ));
                 Utils.send(p, "&aMax size has been changed to " + renameSize);
                 updateMenu(b, menu, true, renameSize);
             });

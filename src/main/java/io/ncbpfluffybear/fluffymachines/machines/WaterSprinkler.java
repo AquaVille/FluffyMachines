@@ -35,12 +35,12 @@ public class WaterSprinkler extends AbstractGrowthAccelerator {
     public static final int CAPACITY = 128;
     private static final int RADIUS = 2;
     private static final int PROGRESS_SLOT = 4;
-    private static final SlimefunItemStack noWaterItem = new SlimefunItemStack("NO_WATER_ITEM",Material.BUCKET,
+    private static final ItemStack noWaterItem = CustomItemStack.create(Material.BUCKET,
         "&cNo water found",
         "",
         "&cPlease place water under the sprinkler!"
     );
-    private static final SlimefunItemStack waterFoundItem = new SlimefunItemStack("WATER_FOUND_ITEM",Material.WATER_BUCKET,
+    private static final ItemStack waterFoundItem = CustomItemStack.create(Material.WATER_BUCKET,
         "&bWater detected"
     );
     private final ItemSetting<Boolean> particles = new ItemSetting<>(this, "particles", true);
@@ -53,7 +53,7 @@ public class WaterSprinkler extends AbstractGrowthAccelerator {
                 for (int i = 0; i < 9; i++)
                     blockMenuPreset.addItem(i, ChestMenuUtils.getBackground(), ChestMenuUtils.getEmptyClickHandler());
 
-                blockMenuPreset.addItem(PROGRESS_SLOT, noWaterItem.item());
+                blockMenuPreset.addItem(PROGRESS_SLOT, noWaterItem);
             });
 
         addItemSetting(successChance, particles);
@@ -93,11 +93,11 @@ public class WaterSprinkler extends AbstractGrowthAccelerator {
 
         if (b.getRelative(BlockFace.DOWN).getType() == Material.WATER) {
             if (open) {
-                inv.replaceExistingItem(PROGRESS_SLOT, waterFoundItem.item());
+                inv.replaceExistingItem(PROGRESS_SLOT, waterFoundItem);
             }
         } else {
             if (open) {
-                inv.replaceExistingItem(PROGRESS_SLOT, noWaterItem.item());
+                inv.replaceExistingItem(PROGRESS_SLOT, noWaterItem);
             }
             return;
         }
@@ -108,7 +108,7 @@ public class WaterSprinkler extends AbstractGrowthAccelerator {
                     final Block block = b.getRelative(x, 0, z);
 
                     if (particles.getValue()) {
-                        block.getWorld().spawnParticle(Particle.SPLASH, block.getLocation().add(0.5D, 0.5D,
+                        block.getWorld().spawnParticle(Particle.FALLING_WATER, block.getLocation().add(0.5D, 0.5D,
                             0.5D), 4, 0.1F, 0.1F, 0.1F);
                     }
 

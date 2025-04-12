@@ -74,8 +74,8 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
                 if (!BlockStorage.hasBlockInfo(b)
                         || BlockStorage.getLocationInfo(b.getLocation(), "enabled") == null
                         || BlockStorage.getLocationInfo(b.getLocation(), "enabled").equals(String.valueOf(false))) {
-                    menu.replaceExistingItem(6, new SlimefunItemStack("MACHINE_STATUS",Material.GUNPOWDER, "&7Enabled: &4\u2718", "",
-                            "&e> Click to enable this Machine").item()
+                    menu.replaceExistingItem(6, CustomItemStack.create(Material.GUNPOWDER, "&7Enabled: &4\u2718", "",
+                            "&e> Click to enable this Machine")
                     );
                     menu.addMenuClickHandler(6, (p, slot, item, action) -> {
                         BlockStorage.addBlockInfo(b, "enabled", String.valueOf(true));
@@ -83,8 +83,8 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
                         return false;
                     });
                 } else {
-                    menu.replaceExistingItem(6, new SlimefunItemStack("MACHINE_STATUS",Material.REDSTONE, "&7Enabled: &2\u2714",
-                            "", "&e> Click to disable this Machine").item()
+                    menu.replaceExistingItem(6, CustomItemStack.create(Material.REDSTONE, "&7Enabled: &2\u2714",
+                            "", "&e> Click to disable this Machine")
                     );
                     menu.addMenuClickHandler(6, (p, slot, item, action) -> {
                         BlockStorage.addBlockInfo(b, "enabled", String.valueOf(false));
@@ -191,9 +191,9 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
             });
         }
 
-        preset.addItem(2, new SlimefunItemStack("MACHINE_RECIPE",new ItemStack(material), "&eRecipe",
+        preset.addItem(2, CustomItemStack.create(new ItemStack(material), "&eRecipe",
                 "", "&bPut in the Recipe you want to craft", machineName + " Recipes ONLY"
-            ).item(),
+            ),
             (p, slot, item, action) -> false);
     }
 
@@ -303,17 +303,17 @@ public class AutoCrafter extends SlimefunItem implements EnergyNetComponent {
 
     static void borders(BlockMenuPreset preset, int[] border, int[] inputBorder, int[] outputBorder) {
         for (int i : border) {
-            preset.addItem(i, new SlimefunItemStack("BORDER_ITEM",new ItemStack(Material.GRAY_STAINED_GLASS_PANE), " ").item(),
+            preset.addItem(i, CustomItemStack.create(new ItemStack(Material.GRAY_STAINED_GLASS_PANE), " "),
                 (p, slot, item, action) -> false);
         }
 
         for (int i : inputBorder) {
-            preset.addItem(i, new SlimefunItemStack("BORDER_ITEM",new ItemStack(Material.CYAN_STAINED_GLASS_PANE), " ").item(),
+            preset.addItem(i, CustomItemStack.create(new ItemStack(Material.CYAN_STAINED_GLASS_PANE), " "),
                 (p, slot, item, action) -> false);
         }
 
         for (int i : outputBorder) {
-            preset.addItem(i, new SlimefunItemStack("BORDER_ITEM",new ItemStack(Material.ORANGE_STAINED_GLASS_PANE), " ").item(),
+            preset.addItem(i, CustomItemStack.create(new ItemStack(Material.ORANGE_STAINED_GLASS_PANE), " "),
                 (p, slot, item, action) -> false);
         }
     }

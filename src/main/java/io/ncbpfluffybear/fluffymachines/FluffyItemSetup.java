@@ -62,52 +62,52 @@ public final class FluffyItemSetup {
     // ItemGroups
     private static final NestedItemGroup fluffymachines = new NestedItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "fluffymachines"),
-            new SlimefunItemStack("CATEGORY_FLUFFYMACHINES",Material.SMOKER, "&6Fluffy Machines").item()
+            CustomItemStack.create(Material.SMOKER, "&6Fluffy Machines")
     );
 
     private static final ItemGroup generators = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "generators"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_GENERATORS",Material.BLAST_FURNACE, "&aGenerators").item(), 1
+            CustomItemStack.create(Material.BLAST_FURNACE, "&aGenerators"), 1
     );
 
     private static final ItemGroup machines = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "machines"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_MACHINES",Material.SMOKER, "&9Machines").item(), 2
+            CustomItemStack.create(Material.SMOKER, "&9Machines"), 2
     );
 
     private static final ItemGroup tools = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "tools"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_TOOLS",Material.IRON_PICKAXE, "&bTools").item(), 3
+            CustomItemStack.create(Material.IRON_PICKAXE, "&bTools"), 3
     );
 
     private static final ItemGroup multiblocks = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "multiblocks"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_MULTIBLOCKS",Material.BRICKS, "&cMultiblocks").item(), 4
+            CustomItemStack.create(Material.BRICKS, "&cMultiblocks"), 4
     );
 
     private static final ItemGroup fluffybarrels = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "barrels"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_FLUFFYBARRELS",Material.BARREL, "&6Fluffy Barrels").item(), 5
+            CustomItemStack.create(Material.BARREL, "&6Fluffy Barrels"), 5
     );
 
     private static final ItemGroup portableChargers = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "portable_chargers"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_PORTABLECHARGERS",FluffyItems.CARBONADO_PORTABLE_CHARGER.item(), "&ePortable Chargers").item(), 6
+            CustomItemStack.create(FluffyItems.CARBONADO_PORTABLE_CHARGER.item(), "&ePortable Chargers"), 6
     );
 
     private static final ItemGroup wrenches = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "wrenches"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_WRENCHES",FluffyItems.CARBONADO_FLUFFY_WRENCH.item(), "&7Wrenches").item(), 7
+            CustomItemStack.create(FluffyItems.CARBONADO_FLUFFY_WRENCH.item(), "&7Wrenches"), 7
     );
 
     private static final ItemGroup cargo = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "cargo"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_CARGO",Material.CHEST, "&3Cargo").item(), 8
+            CustomItemStack.create(Material.CHEST, "&3Cargo"), 8
     );
 
     private static final ItemGroup misc = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "misc"), fluffymachines,
-            new SlimefunItemStack("CATEGORY_MISC",Material.HOPPER, "&8Misc").item(), 9
+            CustomItemStack.create(Material.HOPPER, "&8Misc"), 9
     );
 
     private FluffyItemSetup() {
@@ -317,8 +317,7 @@ public final class FluffyItemSetup {
                 RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.REDSTONE_ALLOY.item(), SlimefunItems.AUTO_ANVIL_2.item(), SlimefunItems.REDSTONE_ALLOY.item(),
                 SlimefunItems.BLISTERING_INGOT_3.item(), SlimefunItems.AUTO_DISENCHANTER.item(), SlimefunItems.BLISTERING_INGOT_3.item(),
-                SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(),
-                SlimefunItems.WITHER_PROOF_OBSIDIAN.item()
+                SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item(), SlimefunItems.WITHER_PROOF_OBSIDIAN.item()
         }).register(plugin);
 
         new BackpackLoader(machines, FluffyItems.BACKPACK_LOADER,
@@ -388,8 +387,7 @@ public final class FluffyItemSetup {
         new SlimefunItem(misc, FluffyItems.ANCIENT_BOOK,
                 RecipeType.ANCIENT_ALTAR, new ItemStack[]{
                 new ItemStack(Material.BOOK), SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE.item(), new ItemStack(Material.BOOK),
-                SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE.item(), SlimefunItems.ENCHANTMENT_RUNE.item(),
-                SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE.item(),
+                SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE.item(), SlimefunItems.ENCHANTMENT_RUNE.item(), SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE.item(),
                 new ItemStack(Material.BOOK), SlimefunItems.FILLED_FLASK_OF_KNOWLEDGE.item(), new ItemStack(Material.BOOK)
         }).register(plugin);
 
@@ -424,12 +422,12 @@ public final class FluffyItemSetup {
         }).register(plugin);
 
         new AlternateElevatorPlate(misc, FluffyItems.ALTERNATE_ELEVATOR_PLATE,
-                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 new ItemStack(Material.STONE_PRESSURE_PLATE), new ItemStack(Material.STONE_PRESSURE_PLATE), new ItemStack(Material.STONE_PRESSURE_PLATE),
                 new ItemStack(Material.PISTON), SlimefunItems.ELECTRIC_MOTOR.item(), new ItemStack(Material.PISTON),
                 SlimefunItems.ALUMINUM_BRONZE_INGOT.item(), SlimefunItems.ALUMINUM_BRONZE_INGOT.item(),
-                SlimefunItems.ALUMINUM_BRONZE_INGOT.item()},
-                new SlimefunItemStack(FluffyItems.ALTERNATE_ELEVATOR_PLATE.getItemId(),FluffyItems.ALTERNATE_ELEVATOR_PLATE.item()).asQuantity(2)
+                SlimefunItems.ALUMINUM_BRONZE_INGOT.item() },
+                new SlimefunItemStack(FluffyItems.ALTERNATE_ELEVATOR_PLATE, 2).item()
         ).register(plugin);
 
         new AdvancedChargingBench(machines, FluffyItems.ADVANCED_CHARGING_BENCH,

@@ -5,7 +5,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.ncbpfluffybear.fluffymachines.machines.AutoCraftingTable;
 import io.ncbpfluffybear.fluffymachines.machines.SmartFactory;
 import io.ncbpfluffybear.fluffymachines.utils.Utils;
@@ -56,7 +55,8 @@ public class KeyedCrafterListener implements Listener {
                     Utils.send(p, "&cYou can not use vanilla items with this machine!");
                     return;
                 }
-                if (SmartFactory.getAcceptedItems().contains(key.getItem())) {
+
+                if (SmartFactory.getAcceptedItems().contains(key)) {
 
                     BlockStorage.addBlockInfo(b, "recipe", key.getId());
                     BlockStorage.getInventory(b).replaceExistingItem(SmartFactory.RECIPE_SLOT,

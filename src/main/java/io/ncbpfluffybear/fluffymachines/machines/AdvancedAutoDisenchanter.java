@@ -62,10 +62,10 @@ public class AdvancedAutoDisenchanter extends SlimefunItem implements EnergyNetC
     private final IntRangeSetting levelLimit = new IntRangeSetting(this, "enchant-level-limit", 0, 10, Short.MAX_VALUE);
     private static final Map<BlockPosition, Integer> progress = new HashMap<>();
 
-    private static final ItemStack DEFAULT_SELECTION_ITEM = new SlimefunItemStack("DEFAULT_SELECTION_ITEM", Material.ENCHANTED_BOOK,
-            "&5Enchant Selector", "", "&e> Click to rescan input slot <").item();
+    private static final ItemStack DEFAULT_SELECTION_ITEM = CustomItemStack.create(Material.ENCHANTED_BOOK,
+            "&5Enchant Selector", "", "&e> Click to rescan input slot <");
 
-    private static final ItemStack PROGRESS_ITEM = new SlimefunItemStack("PROGRESS_ITEM", Material.EXPERIENCE_BOTTLE, "&aProgress").item();
+    private static final ItemStack PROGRESS_ITEM = CustomItemStack.create(Material.EXPERIENCE_BOTTLE, "&aProgress");
 
     public AdvancedAutoDisenchanter(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -290,7 +290,7 @@ public class AdvancedAutoDisenchanter extends SlimefunItem implements EnergyNetC
         }
 
         for (int i : BOOK_BORDER) {
-            preset.addItem(i, new SlimefunItemStack("BOOK_BORDER" ,new ItemStack(Material.YELLOW_STAINED_GLASS_PANE), " ").item(), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, CustomItemStack.create(new ItemStack(Material.YELLOW_STAINED_GLASS_PANE), " "), ChestMenuUtils.getEmptyClickHandler());
         }
 
         for (int i : OUTPUT_BORDER) {

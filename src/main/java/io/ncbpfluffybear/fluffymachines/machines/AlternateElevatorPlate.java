@@ -133,7 +133,7 @@ public class AlternateElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> 
 
         if (floors.size() < MAX_CHEST_INDEX) {
             for (int i = floors.size(); i <= MAX_CHEST_INDEX; i++) {
-                elevatorMenu.addItem(i, new SlimefunItemStack("FLOOR_SELECTOR_FILL",Material.LIGHT_GRAY_STAINED_GLASS_PANE, "").item());
+                elevatorMenu.addItem(i, CustomItemStack.create(Material.LIGHT_GRAY_STAINED_GLASS_PANE, ""));
                 elevatorMenu.addMenuClickHandler(i, ChestMenuUtils.getEmptyClickHandler());
             }
         }
@@ -167,8 +167,8 @@ public class AlternateElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> 
     public void openEditor(Player p, Block b) {
         ChestMenu menu = new ChestMenu("Elevator Settings");
 
-        menu.addItem(4, new SlimefunItemStack("FLOOR_NAME", Material.NAME_TAG, "&7Floor Name &e(Click to edit)", "",
-            "&f" + ChatColors.color(BlockStorage.getLocationInfo(b.getLocation(), DATA_KEY))).item());
+        menu.addItem(4, CustomItemStack.create(Material.NAME_TAG, "&7Floor Name &e(Click to edit)", "",
+            "&f" + ChatColors.color(BlockStorage.getLocationInfo(b.getLocation(), DATA_KEY))));
         menu.addMenuClickHandler(4, (pl, slot, item, action) -> {
             pl.closeInventory();
             pl.sendMessage("");
@@ -194,15 +194,15 @@ public class AlternateElevatorPlate extends SimpleSlimefunItem<BlockUseHandler> 
 
     private void addFloor(ChestMenu menu, int slot, Player p, String floor, Block b, Block destination) {
         if (destination.getY() == b.getY()) {
-            menu.addItem(slot, new SlimefunItemStack("CURRENT_FLOOR", Material.LIME_STAINED_GLASS_PANE,
+            menu.addItem(slot, CustomItemStack.create(Material.LIME_STAINED_GLASS_PANE,
                 ChatColors.color(Slimefun.getLocalization().getMessage(p, "machines.ELEVATOR.current-floor")),
-                "", ChatColor.WHITE + floor, "").item());
+                "", ChatColor.WHITE + floor, ""));
             menu.addMenuClickHandler(slot, ChestMenuUtils.getEmptyClickHandler());
 
         } else {
-            menu.addItem(slot, new SlimefunItemStack("CLICK_TO_TELEPORT" ,Material.GRAY_STAINED_GLASS_PANE,
+            menu.addItem(slot, CustomItemStack.create(Material.GRAY_STAINED_GLASS_PANE,
                 ChatColors.color(Slimefun.getLocalization().getMessage(p,
-                    "machines.ELEVATOR.click-to-teleport")), "", ChatColor.WHITE + floor, "").item());
+                    "machines.ELEVATOR.click-to-teleport")), "", ChatColor.WHITE + floor, ""));
             menu.addMenuClickHandler(slot, (player, clickSlot, item, action) -> {
                 teleport(p, floor, destination);
                 return false;

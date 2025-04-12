@@ -1,13 +1,11 @@
 package io.ncbpfluffybear.fluffymachines.utils;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.handlers.SimpleBlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import io.ncbpfluffybear.fluffymachines.FluffyMachines;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,21 +180,6 @@ public final class Utils {
     public static BukkitTask runSync(Runnable r, long delay) {
         return FluffyMachines.getInstance() != null && FluffyMachines.getInstance().isEnabled() ?
                 Bukkit.getScheduler().runTaskLater(FluffyMachines.getInstance(), r, delay) : null;
-    }
-
-    public static boolean isSlimefunItem(ItemStack item) {
-        SlimefunItemStack slimefunItemStack = new SlimefunItemStack("SF_ITEM", item);
-        slimefunItemStack.setAmount(item.getAmount());
-        return SlimefunUtils.isItemSimilar(item, slimefunItemStack.item(), true, true);
-    }
-
-    public static SlimefunItemStack toSlimeFunStack(ItemStack item) {
-        var sfStack = new SlimefunItemStack(
-                "SF_ITEM_OF_TYPE_" + item.getType().name().toUpperCase(),
-                item
-        );
-        sfStack.setAmount(item.getAmount());
-        return sfStack;
     }
 }
 
