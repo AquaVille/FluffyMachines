@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
@@ -35,12 +35,12 @@ public class WaterSprinkler extends AbstractGrowthAccelerator {
     public static final int CAPACITY = 128;
     private static final int RADIUS = 2;
     private static final int PROGRESS_SLOT = 4;
-    private static final ItemStack noWaterItem = CustomItemStack.create(Material.BUCKET,
+    private static final ItemStack noWaterItem = new CustomItemStack(Material.BUCKET,
         "&cNo water found",
         "",
         "&cPlease place water under the sprinkler!"
     );
-    private static final ItemStack waterFoundItem = CustomItemStack.create(Material.WATER_BUCKET,
+    private static final ItemStack waterFoundItem = new CustomItemStack(Material.WATER_BUCKET,
         "&bWater detected"
     );
     private final ItemSetting<Boolean> particles = new ItemSetting<>(this, "particles", true);

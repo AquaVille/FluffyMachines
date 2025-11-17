@@ -5,7 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 import io.ncbpfluffybear.fluffymachines.utils.Utils;
@@ -37,7 +37,7 @@ public class MiniBarrel extends Barrel {
     @Override
     protected void buildMenu(BlockMenu menu, Block b) {
         super.buildMenu(menu, b);
-        menu.replaceExistingItem(13, CustomItemStack.create(Material.YELLOW_STAINED_GLASS_PANE,
+        menu.replaceExistingItem(13, new CustomItemStack(Material.YELLOW_STAINED_GLASS_PANE,
                 "&eChange barrel size", "&7> Click to change max size", "&eCurrent size: " + getCapacity(b),
                 "&eSize limit: " + barrelCapacity.getValue()
         ));
@@ -59,7 +59,7 @@ public class MiniBarrel extends Barrel {
                 }
 
                 BlockStorage.addBlockInfo(b, "max-size", String.valueOf(renameSize));
-                menu.replaceExistingItem(13, CustomItemStack.create(Material.YELLOW_STAINED_GLASS_PANE,
+                menu.replaceExistingItem(13, new CustomItemStack(Material.YELLOW_STAINED_GLASS_PANE,
                         "&eChange barrel size", "&7> Click to change max size", "&eCurrent size: " + renameSize,
                         "&eSize limit: " + barrelCapacity.getValue()
                 ));

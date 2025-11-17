@@ -10,8 +10,9 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.text.WordUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.blocks.BlockPosition;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -29,7 +30,6 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
-import org.apache.commons.lang3.text.WordUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -62,10 +62,10 @@ public class AdvancedAutoDisenchanter extends SlimefunItem implements EnergyNetC
     private final IntRangeSetting levelLimit = new IntRangeSetting(this, "enchant-level-limit", 0, 10, Short.MAX_VALUE);
     private static final Map<BlockPosition, Integer> progress = new HashMap<>();
 
-    private static final ItemStack DEFAULT_SELECTION_ITEM = CustomItemStack.create(Material.ENCHANTED_BOOK,
+    private static final ItemStack DEFAULT_SELECTION_ITEM = new CustomItemStack(Material.ENCHANTED_BOOK,
             "&5Enchant Selector", "", "&e> Click to rescan input slot <");
 
-    private static final ItemStack PROGRESS_ITEM = CustomItemStack.create(Material.EXPERIENCE_BOTTLE, "&aProgress");
+    private static final ItemStack PROGRESS_ITEM = new CustomItemStack(Material.EXPERIENCE_BOTTLE, "&aProgress");
 
     public AdvancedAutoDisenchanter(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -290,7 +290,7 @@ public class AdvancedAutoDisenchanter extends SlimefunItem implements EnergyNetC
         }
 
         for (int i : BOOK_BORDER) {
-            preset.addItem(i, CustomItemStack.create(new ItemStack(Material.YELLOW_STAINED_GLASS_PANE), " "), ChestMenuUtils.getEmptyClickHandler());
+            preset.addItem(i, new CustomItemStack(new ItemStack(Material.YELLOW_STAINED_GLASS_PANE), " "), ChestMenuUtils.getEmptyClickHandler());
         }
 
         for (int i : OUTPUT_BORDER) {

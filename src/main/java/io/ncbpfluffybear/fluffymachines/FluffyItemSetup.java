@@ -7,7 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.bakedlibs.dough.items.CustomItemStack;
 import io.ncbpfluffybear.fluffymachines.items.Barrel;
 import io.ncbpfluffybear.fluffymachines.items.EnderChestExtractionNode;
 import io.ncbpfluffybear.fluffymachines.items.EnderChestInsertionNode;
@@ -62,52 +62,52 @@ public final class FluffyItemSetup {
     // ItemGroups
     private static final NestedItemGroup fluffymachines = new NestedItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "fluffymachines"),
-            CustomItemStack.create(Material.SMOKER, "&6Fluffy Machines")
+            new CustomItemStack(Material.SMOKER, "&6Fluffy Machines")
     );
 
     private static final ItemGroup generators = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "generators"), fluffymachines,
-            CustomItemStack.create(Material.BLAST_FURNACE, "&aGenerators"), 1
+            new CustomItemStack(Material.BLAST_FURNACE, "&aGenerators"), 1
     );
 
     private static final ItemGroup machines = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "machines"), fluffymachines,
-            CustomItemStack.create(Material.SMOKER, "&9Machines"), 2
+            new CustomItemStack(Material.SMOKER, "&9Machines"), 2
     );
 
     private static final ItemGroup tools = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "tools"), fluffymachines,
-            CustomItemStack.create(Material.IRON_PICKAXE, "&bTools"), 3
+            new CustomItemStack(Material.IRON_PICKAXE, "&bTools"), 3
     );
 
     private static final ItemGroup multiblocks = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "multiblocks"), fluffymachines,
-            CustomItemStack.create(Material.BRICKS, "&cMultiblocks"), 4
+            new CustomItemStack(Material.BRICKS, "&cMultiblocks"), 4
     );
 
     private static final ItemGroup fluffybarrels = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "barrels"), fluffymachines,
-            CustomItemStack.create(Material.BARREL, "&6Fluffy Barrels"), 5
+            new CustomItemStack(Material.BARREL, "&6Fluffy Barrels"), 5
     );
 
     private static final ItemGroup portableChargers = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "portable_chargers"), fluffymachines,
-            CustomItemStack.create(FluffyItems.CARBONADO_PORTABLE_CHARGER.item(), "&ePortable Chargers"), 6
+            new CustomItemStack(FluffyItems.CARBONADO_PORTABLE_CHARGER.item(), "&ePortable Chargers"), 6
     );
 
     private static final ItemGroup wrenches = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "wrenches"), fluffymachines,
-            CustomItemStack.create(FluffyItems.CARBONADO_FLUFFY_WRENCH.item(), "&7Wrenches"), 7
+            new CustomItemStack(FluffyItems.CARBONADO_FLUFFY_WRENCH.item(), "&7Wrenches"), 7
     );
 
     private static final ItemGroup cargo = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "cargo"), fluffymachines,
-            CustomItemStack.create(Material.CHEST, "&3Cargo"), 8
+            new CustomItemStack(Material.CHEST, "&3Cargo"), 8
     );
 
     private static final ItemGroup misc = new SubItemGroup(
             new NamespacedKey(FluffyMachines.getInstance(), "misc"), fluffymachines,
-            CustomItemStack.create(Material.HOPPER, "&8Misc"), 9
+            new CustomItemStack(Material.HOPPER, "&8Misc"), 9
     );
 
     private FluffyItemSetup() {
