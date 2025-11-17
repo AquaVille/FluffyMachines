@@ -35,6 +35,37 @@
         </repository>
     </repositories>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.21.10-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.SlimeFun-Lab</groupId>
+            <artifactId>Slimefun4</artifactId>
+            <version>experimental-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Temporary fix for Dough skin issue (November 2025) : START -->
+        <dependency>
+            <groupId>com.github.StarWishsama</groupId>
+            <artifactId>dough</artifactId>
+            <version>0a06f6fcaef863c97e3c036ef2406e15691bae16</version> <!-- or a tag or commit hash -->
+        </dependency>
+        <!-- Temporary fix for Dough skin issue (November 2025) : END -->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <defaultGoal>clean package</defaultGoal>
         <finalName>${project.artifactId}</finalName>
@@ -73,7 +104,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.6.1</version>
                 <executions>
                     <execution>
                         <goals>
@@ -83,6 +114,7 @@
                 </executions>
 
                 <configuration>
+                    <minimizeJar>true</minimizeJar>
                     <relocations>
                         <!-- Temporary fix for Dough skin issue (November 2025) : START -->
                         <relocation>
@@ -91,41 +123,18 @@
                         </relocation>
                         <!-- Temporary fix for Dough skin issue (November 2025) : END -->
                     </relocations>
+
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
                 </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <dependencies>
-        <!-- SPIGOT API DEPENDENCY -->
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.21.10-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.SlimeFun-Lab</groupId>
-            <artifactId>Slimefun4</artifactId>
-            <version>experimental-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Temporary fix for Dough skin issue (November 2025) : START -->
-        <dependency>
-            <groupId>com.github.StarWishsama</groupId>
-            <artifactId>dough</artifactId>
-            <version>0a06f6fcaef863c97e3c036ef2406e15691bae16</version> <!-- or a tag or commit hash -->
-        </dependency>
-        <!-- Temporary fix for Dough skin issue (November 2025) : END -->
-
-        <!-- LOMBOK TOOL -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.36</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>
